@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cp agnoster-two-lines.zsh-theme /home/maxim/.oh-my-zsh/themes/agnoster-two-lines.zsh-theme 

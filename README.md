@@ -8,6 +8,10 @@ A ZSH theme optimized for people who use:
 
 For Mac users, I highly recommend iTerm 2 + Solarized Dark
 
+# Install
+Set agnoster-two-lines theme in your .zshrc
+Run ``apply`` script to copy theme to your oh-my-zsh folder
+
 # Compatibility
 
 **NOTE:** In all likelihood, you will need to install a [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts) for this theme to render correctly.
