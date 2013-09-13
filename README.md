@@ -1,4 +1,4 @@
-# agnoster.zsh-theme
+# agnoster-two-lines.zsh-theme
 
 A ZSH theme optimized for people who use:
 
@@ -10,7 +10,7 @@ For Mac users, I highly recommend iTerm 2 + Solarized Dark
 
 # Compatibility
 
-**NOTE:** In all likelihood, you will need to install a [Powerline-patched font](https://gist.github.com/1595572) for this theme to render correctly.
+**NOTE:** In all likelihood, you will need to install a [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts) for this theme to render correctly.
 
 To test if your terminal and font support it, check that all the necessary characters are supported by copying the following command to your terminal: `echo "⮀ ± ⭠ ➦ ✔ ✘ ⚡"`. The result should look like this:
 
