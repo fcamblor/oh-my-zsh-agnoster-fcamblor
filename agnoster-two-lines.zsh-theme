@@ -63,7 +63,7 @@ prompt_context() {
   local user=`whoami`
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black white "%(!.%{%F{yellow}%}.)$user %*"
+    prompt_segment black white "%(!.%{%F{yellow}%}.)$user %* $(promt_ram)G"
   fi
 }
 
@@ -156,10 +156,15 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
+function promt_ram {
+  free -m | awk '{if (NR==3) print $4}' | xargs -i echo 'scale=1;{}/1000' | bc
+}
+
 prompt_next_line() {
   prompt_segment default yellow "%c>"
   echo -n "%{%f%}"	
 }
+
 
 ## Main prompt
 build_prompt() {
@@ -175,3 +180,4 @@ build_prompt() {
 
 PROMPT='%{%f%b%k%}$(build_prompt)
 $(prompt_next_line) '
+
