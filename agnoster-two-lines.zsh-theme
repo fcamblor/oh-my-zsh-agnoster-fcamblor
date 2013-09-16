@@ -157,7 +157,7 @@ prompt_status() {
 }
 
 function promt_ram {
-  free -m | awk '{if (NR==3) print $4}' | xargs -i echo 'scale=1;{}/1000' | bc
+  free -m | awk '{if (NR==2) print $4}' | xargs -i echo 'scale=1;{}/1000' | bc
 }
 
 prompt_next_line() {
