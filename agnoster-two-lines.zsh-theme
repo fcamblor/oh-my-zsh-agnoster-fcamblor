@@ -1,4 +1,4 @@
-# vim:ft=zsh ts=2 sw=2 sts=2
+
 #
 # agnoster's Theme - https://gist.github.com/3712874
 # A Powerline-inspired theme for ZSH
@@ -157,7 +157,7 @@ prompt_status() {
 }
 
 function promt_ram {
-  free -m | awk '{if (NR==2) print $4}' | xargs -i echo 'scale=1;{}/1000' | bc
+  free -m | awk '{if (NR==2) print $4}' | xargs -i echo 'scale=4;{}/1000' | bc | xargs -i printf "%.2f" {}
 }
 
 prompt_next_line() {
@@ -165,6 +165,9 @@ prompt_next_line() {
   echo -n "%{%f%}"	
 }
 
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}" 
+}
 
 ## Main prompt
 build_prompt() {
@@ -180,4 +183,3 @@ build_prompt() {
 
 PROMPT='%{%f%b%k%}$(build_prompt)
 $(prompt_next_line) '
-
