@@ -72,22 +72,25 @@ prompt_git() {
   local ref dirty
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     dirty=$(parse_git_dirty)
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git show-ref --head -s --abbrev |head -n1 2> /dev/null)"
-    if [[ "$(git symbolic-ref HEAD 2> /dev/null )" = ""  ]]; then
-      upstream=""
-    else
-      upstream=$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD))
-      if [[ -n $upstream ]]; then
-        new_from_upstream=$(git cherry $ref $upstream | wc -l | tr -d ' ')
-        new_from_local=$(git cherry $upstream $ref | wc -l | tr -d ' ')
-        upstream=" (+$new_from_local) => (-$new_from_upstream) $upstream"
-      fi
-    fi
+
+	ref=$(git symbolic-ref HEAD 2> /dev/null) || ""
+	if [[ -z $ref ]]; then
+	  detached_head=true;
+	  ref="$(git show-ref --head -s --abbrev |head -n1 2> /dev/null)";
+	  ref_symbol="➦"
+	else
+	  detached_head=false;
+	  ref=${ref/refs\/heads\//}
+	  ref_symbol=""
+	fi
+
     if [[ -n $dirty ]]; then
-      prompt_segment yellow black 
+      prompt_segment yellow black
     else
-      prompt_segment green black 
+      prompt_segment green black
     fi
+
+    echo -n "${ref_symbol} ${ref}"
 
     setopt promptsubst
     autoload -Uz vcs_info
@@ -100,7 +103,7 @@ prompt_git() {
     zstyle ':vcs_info:*' formats ' %u%c'
     zstyle ':vcs_info:*' actionformats '%u%c'
     vcs_info
-    echo -n "${ref/refs\/heads\// }${upstream}${vcs_info_msg_0_}"
+    echo -n "${vcs_info_msg_0_}"
   fi
 }
 
