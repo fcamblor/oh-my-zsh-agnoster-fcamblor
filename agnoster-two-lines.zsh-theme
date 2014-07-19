@@ -84,13 +84,53 @@ prompt_git() {
 	  ref_symbol=""
 	fi
 
+    new_from_upstream=0;
+    upstream="";
+    # If in detached head, there should never be any upstream
+    if [ "$detached_head" = true ]; then
+      upstream="";
+      new_from_local="";
+    else
+      # On a branch ... looking for upstream branch and, if available, calculating
+      # commits deltas
+      
+      # git branch -vv potential outputs :
+      # `* master e4b49d0 ...` => Just after create and checkout new local branch. Should be considered untracked
+      # `* master e4b49d0 [origin/master: gone] ...` => Untracked branch. Should be considered untracked
+      # `* master e4b49d0 [origin/master] ...` => Tracked branch without diff
+      # `* master e4b49d0 [origin/master: ahead 1, behind 1] ...` => Tracked branch with diffs
+      if [[ $(git branch -vv | grep "* $ref .* \\[" | wc -l) -eq 0 ]]; then
+          # First case or case where branch doesn't exist
+          # We should consider this as an untracked branch
+          upstream_status="gone"
+      else
+          upstream_infos=$(git branch -vv | grep "* $ref" | sed 's@.*\[\(.*\)\].*@\1@g')
+          upstream=$(echo $upstream_infos | cut -d':' -f1)
+          if [[ $(echo $upstream_infos | grep ':' | wc -l) -eq 0 ]]; then
+              upstream_status="synced"
+          else
+              upstream_status=$(echo $upstream_infos | cut -d':' -f2 | tr -d ' ')
+          fi
+      fi
+
+      if [ "$upstream_status" = "gone" ]; then
+        # Case for untracked branch
+        new_from_local="";
+        upstream=""
+      else
+        # Tracked branch : calculating commits deltas
+        new_from_local=" (+$(git cherry $upstream $ref | wc -l | tr -d ' '))";
+        new_from_upstream=$(git cherry $ref $upstream | wc -l | tr -d ' ')
+      fi
+    fi
+
     if [[ -n $dirty ]]; then
       prompt_segment yellow black
     else
       prompt_segment green black
     fi
 
-    echo -n "${ref_symbol} ${ref}"
+    echo -n "${ref_symbol} ${ref}${new_from_local}"
 
     setopt promptsubst
     autoload -Uz vcs_info
@@ -104,6 +144,16 @@ prompt_git() {
     zstyle ':vcs_info:*' actionformats '%u%c'
     vcs_info
     echo -n "${vcs_info_msg_0_}"
+
+    # Displaying upstream dedicated segment
+    if [[ -n $upstream ]]; then
+      if [ $new_from_upstream -ne 0 ]; then
+        prompt_segment magenta white
+      else
+        prompt_segment cyan black
+      fi
+      echo -n " $upstream (-$new_from_upstream)"
+    fi
   fi
 }
 
