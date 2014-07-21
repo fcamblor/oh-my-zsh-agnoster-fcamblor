@@ -85,10 +85,12 @@ prompt_git() {
 
     remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
     if [[ -n ${remote} ]] ; then
-      ahead=" (+$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | tr -d ' '))"
+      ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | tr -d ' ')
+      displayed_ahead=" (+${ahead})"
       behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | tr -d ' ')
     else
       ahead=""
+      displayed_ahead=""
       behind=""
     fi
 
@@ -98,7 +100,7 @@ prompt_git() {
       prompt_segment green black
     fi
 
-    echo -n "${ref_symbol} ${ref}${ahead}"
+    echo -n "${ref_symbol} ${ref}${displayed_ahead}"
 
     setopt promptsubst
     autoload -Uz vcs_info
