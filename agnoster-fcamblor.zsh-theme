@@ -26,6 +26,7 @@
 
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR=''
+SHOW_STASH_SEGMENT=1
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
@@ -71,6 +72,14 @@ prompt_git() {
   local ref dirty
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     dirty=$(parse_git_dirty)
+
+    if [[ $SHOW_STASH_SEGMENT -eq 1 ]]; then
+        stash_size=$(git stash list | wc -l | tr -d ' ')
+        if [[ stash_size -ne 0 ]]; then
+            prompt_segment white black
+            echo -n "+${stash_size}"
+        fi
+    fi
 
 	ref=$(git symbolic-ref HEAD 2> /dev/null) || ""
 	if [[ -z $ref ]]; then
