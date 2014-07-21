@@ -1,4 +1,4 @@
-# agnoster-two-lines.zsh-theme
+# agnoster-fcamblor.zsh-theme
 
 A ZSH theme optimized for people who use:
 
@@ -24,12 +24,12 @@ To test if your terminal and font support it, check that all the necessary chara
 
 - If the previous command failed (✘)
 - User @ Hostname (if user is not DEFAULT_USER, which can then be set in your profile)
-- Git status
+- Working directory
+- Git statuses
+  - Dirty working directory (orange / green)
   - Branch (⭠) or detached head (➦)
   - Current branch / SHA1 in detached head state
-  - Dirty working directory (±, color change)
-- Working directory
-- Elevated (root) privileges (⚡)
-- Current time and free memory
+  - Remote branch name (if you're tracking a remote branch)
+  - Number of commit ahead HEAD and behind remote tracking branch (remote tracking segment will be magenta if fetch is needed)
 
-![Screenshot](https://raw.github.com/gist/3712874/5d28e2d9fe2e4d0a4fda0315ad97bdafa399425c/screenshot.png)
+![Screenshot](https://gist.githubusercontent.com/fcamblor/f8e824caa28f8bea5572/raw/8c96ec7d669edac8ae1e1935fe389ee7b3bf543c/screenshot.png)
