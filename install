@@ -5,7 +5,7 @@ echo "Creating symlink from here to your oh-my-zsh themes path..."
 ln -f agnoster-fcamblor.zsh-theme ~/.oh-my-zsh/themes/agnoster-fcamblor.zsh-theme
 
 echo "
-Done ! (the symlink is ~/.oh-my-zsh/themes/powerline.zsh-theme)
+Done ! (the symlink is ~/.oh-my-zsh/themes/agnoster-fcamblor.zsh-theme)
 
 ----------------------------------------------------------------------------------
 
