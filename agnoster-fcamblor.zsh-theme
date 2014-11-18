@@ -81,7 +81,7 @@ prompt_git() {
         fi
     fi
 
-	ref=$(git symbolic-ref HEAD 2> /dev/null) || ""
+	ref=$(git symbolic-ref HEAD 2> /dev/null)
 	if [[ -z $ref ]]; then
 	  detached_head=true;
 	  ref="$(git show-ref --head -s --abbrev |head -n1 2> /dev/null)";
