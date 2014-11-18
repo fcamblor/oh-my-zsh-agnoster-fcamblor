@@ -9,7 +9,6 @@ A ZSH theme optimized for people who use:
 For Mac users, I highly recommend iTerm 2 + Solarized Dark
 
 # Install
-- Set agnoster-two-lines theme in your ~/.zshrc
 - Run ``install`` script to copy theme to your ~/.oh-my-zsh folder
 
 # Compatibility
@@ -30,6 +29,6 @@ To test if your terminal and font support it, check that all the necessary chara
   - Branch (⭠) or detached head (➦)
   - Current branch / SHA1 in detached head state
   - Remote branch name (if you're tracking a remote branch)
-  - Number of commit ahead HEAD and behind remote tracking branch (remote tracking segment will be magenta if fetch is needed)
+  - Number of commit ahead HEAD and behind remote tracking branch (remote tracking segment will be magenta if merge/rebase is needed)
 
 ![Screenshot](https://gist.githubusercontent.com/fcamblor/f8e824caa28f8bea5572/raw/8c96ec7d669edac8ae1e1935fe389ee7b3bf543c/screenshot.png)
