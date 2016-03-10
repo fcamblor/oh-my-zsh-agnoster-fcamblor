@@ -58,15 +58,6 @@ prompt_end() {
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
-# Context: user@hostname (who am I and where am I)
-prompt_context() {
-  local user=`whoami`
-
-  if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black white "%(!.%{%F{yellow}%}.)$user |%*| $(promt_ram)G"
-  fi
-}
-
 # Git: branch/detached head, dirty status
 prompt_git() {
   local ref dirty
@@ -198,10 +189,6 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
-function promt_ram {
-  free -m | awk '{if (NR==2) print $4}' | xargs -i echo 'scale=4;{}/1000' | bc | xargs -i printf "%.2f" {}
-}
-
 prompt_next_line() {
   prompt_segment default yellow "%c>"
   echo -n "%{%f%}"	
@@ -216,7 +203,6 @@ build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_virtualenv
-  prompt_context
   prompt_dir
   prompt_git
   prompt_hg
