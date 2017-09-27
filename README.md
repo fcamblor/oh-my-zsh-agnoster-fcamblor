@@ -15,6 +15,10 @@ For Mac users, I highly recommend iTerm 2 + Solarized Dark
 
 **NOTE:** In all likelihood, you will need to install a [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts) for this theme to render correctly.
 
+For iTerm 2 users, you have to set the font on : iTerm 2 -> Preferences -> Profiles -> Text and use one of the \*Powerline\* fonts :
+
+<img src="https://raw.githubusercontent.com/fcamblor/oh-my-zsh-agnoster-fcamblor/master/iterm_set_font.png" height="400">
+
 To test if your terminal and font support it, check that all the necessary characters are supported by copying the following command to your terminal: `echo "⮀ ± ⭠ ➦ ✔ ✘ ⚡"`. The result should look like this:
 
 ![Character Example](http://cl.ly/content/image/2l3w443z363P/aHR0cDovL2YuY2wubHkvaXRlbXMvM2ozTjJpMDMzTzJNM0ozcDFjMjgvU2NyZWVuJTIwU2hvdCUyMDIwMTItMDktMTQlMjBhdCUyMDEyLjA2LjAyJTIwLnBuZw==)
