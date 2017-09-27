@@ -15,6 +15,10 @@ For Mac users, I highly recommend iTerm 2 + Solarized Dark
 
 **NOTE:** In all likelihood, you will need to install a [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts) for this theme to render correctly.
 
+For iTerm 2 users, you have to set the font : iTerm 2 -> Preferences -> Profiles -> Text and use one of the Meslo fonts :
+
+<img src="https://gist.github.com/mgohin/0144c7930a3ff81f86f7b3bfb06558a1/raw/d8548fb86788e26900df3be43be6e064af616a87/iterm_set_font.png" height="150">
+
 To test if your terminal and font support it, check that all the necessary characters are supported by copying the following command to your terminal: `echo "⮀ ± ⭠ ➦ ✔ ✘ ⚡"`. The result should look like this:
 
 ![Character Example](http://cl.ly/content/image/2l3w443z363P/aHR0cDovL2YuY2wubHkvaXRlbXMvM2ozTjJpMDMzTzJNM0ozcDFjMjgvU2NyZWVuJTIwU2hvdCUyMDIwMTItMDktMTQlMjBhdCUyMDEyLjA2LjAyJTIwLnBuZw==)
