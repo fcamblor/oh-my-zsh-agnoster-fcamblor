@@ -94,10 +94,14 @@ prompt_git() {
       behind=""
     fi
 
-    if [[ -n $dirty ]]; then
-      prompt_segment yellow black
+    if [ $behind -ne 0 ] && [ $ahead -ne 0 ]; then
+      prompt_segment red black
     else
-      prompt_segment green black
+      if [[ -n $dirty ]]; then
+        prompt_segment yellow black
+      else
+        prompt_segment green black
+      fi
     fi
 
     echo -n "${ref_symbol} ${ref}${displayed_ahead}"
