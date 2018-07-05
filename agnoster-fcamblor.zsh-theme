@@ -94,7 +94,7 @@ prompt_git() {
       behind=""
     fi
 
-    if [ $behind -ne 0 ] && [ $ahead -ne 0 ]; then
+    if [[ $behind -ne 0 ]] && [[ $ahead -ne 0 ]]; then
       prompt_segment red black
     else
       if [[ -n $dirty ]]; then
@@ -121,7 +121,7 @@ prompt_git() {
 
     # Displaying upstream dedicated segment
     if [[ -n $remote ]]; then
-      if [ $behind -ne 0 ]; then
+      if [[ $behind -ne 0 ]]; then
         prompt_segment magenta white
       else
         prompt_segment cyan black
